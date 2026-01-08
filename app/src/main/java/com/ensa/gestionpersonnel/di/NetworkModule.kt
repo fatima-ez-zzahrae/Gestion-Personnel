@@ -4,6 +4,7 @@ import android.content.Context
 import com.ensa.gestionpersonnel.data.local.PreferencesManager
 import com.ensa.gestionpersonnel.data.remote.AuthInterceptor
 import com.ensa.gestionpersonnel.data.remote.api.AuthApi
+import com.ensa.gestionpersonnel.data.remote.api.DashboardApi
 import com.ensa.gestionpersonnel.data.remote.api.PersonnelApi
 import com.ensa.gestionpersonnel.utils.Constants
 import dagger.Module
@@ -66,5 +67,11 @@ object NetworkModule {
     @Singleton
     fun providePersonnelApi(retrofit: Retrofit): PersonnelApi {
         return retrofit.create(PersonnelApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDashboardApi(retrofit: Retrofit): DashboardApi {
+        return retrofit.create(DashboardApi::class.java)
     }
 }

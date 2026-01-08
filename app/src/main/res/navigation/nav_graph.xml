@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <!-- Dashboard Fragment -->
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.ensa.gestionpersonnel.ui.dashboard.DashboardFragment"
+        android:label="Tableau de Bord"
+        tools:layout="@layout/fragment_dashboard">
+        
+        <action
+            android:id="@+id/action_dashboard_to_personnelList"
+            app:destination="@id/personnelListFragment"/>
+    </fragment>
+
+    <!-- Personnel List Fragment -->
+    <fragment
+        android:id="@+id/personnelListFragment"
+        android:name="com.ensa.gestionpersonnel.ui.personnel.list.PersonnelListFragment"
+        android:label="Liste du Personnel"
+        tools:layout="@layout/fragment_personnel_list">
+        
+        <action
+            android:id="@+id/action_personnelList_to_personnelDetail"
+            app:destination="@id/personnelDetailFragment"/>
+        
+        <action
+            android:id="@+id/action_personnelList_to_personnelForm"
+            app:destination="@id/personnelFormFragment"/>
+    </fragment>
+
+    <!-- Personnel Detail Fragment -->
+    <fragment
+        android:id="@+id/personnelDetailFragment"
+        android:name="com.ensa.gestionpersonnel.ui.personnel.detail.PersonnelDetailFragment"
+        android:label="Détails du Personnel"
+        tools:layout="@layout/fragment_personnel_detail">
+        
+        <argument
+            android:name="personnelId"
+            app:argType="long"/>
+        
+        <action
+            android:id="@+id/action_personnelDetailToPersonnelForm"
+            app:destination="@id/personnelFormFragment"/>
+    </fragment>
+
+    <!-- Personnel Form Fragment -->
+    <fragment
+        android:id="@+id/personnelFormFragment"
+        android:name="com.ensa.gestionpersonnel.ui.personnel.form.PersonnelFormFragment"
+        android:label="Formulaire Personnel"
+        tools:layout="@layout/fragment_personnel_form">
+        
+        <argument
+            android:name="personnelId"
+            app:argType="long"/>
+    </fragment>
+
+</navigation>

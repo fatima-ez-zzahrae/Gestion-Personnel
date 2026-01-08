@@ -2,8 +2,10 @@ package com.ensa.gestionpersonnel.di
 
 import com.ensa.gestionpersonnel.data.local.PreferencesManager
 import com.ensa.gestionpersonnel.data.remote.api.AuthApi
+import com.ensa.gestionpersonnel.data.remote.api.DashboardApi
 import com.ensa.gestionpersonnel.data.remote.api.PersonnelApi
 import com.ensa.gestionpersonnel.data.repository.AuthRepository
+import com.ensa.gestionpersonnel.data.repository.DashboardRepository
 import com.ensa.gestionpersonnel.data.repository.PersonnelRepository
 import dagger.Module
 import dagger.Provides
@@ -25,5 +27,11 @@ object RepositoryModule {
     @Singleton
     fun providePersonnelRepository(personnelApi: PersonnelApi): PersonnelRepository {
         return PersonnelRepository(personnelApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDashboardRepository(dashboardApi: DashboardApi): DashboardRepository {
+        return DashboardRepository(dashboardApi)
     }
 }

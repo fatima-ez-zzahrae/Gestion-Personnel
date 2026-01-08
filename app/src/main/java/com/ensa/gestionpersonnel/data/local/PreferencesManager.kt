@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.ensa.gestionpersonnel.utils.Constants
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 private val Context.dataStore by preferencesDataStore(name = Constants.PREFS_NAME)
@@ -28,5 +29,13 @@ class PreferencesManager(private val context: Context) {
         context.dataStore.edit { preferences ->
             preferences.remove(tokenKey)
         }
+    }
+
+    suspend fun clearSession() {
+        clearToken()
+    }
+
+    suspend fun isLoggedIn(): Boolean {
+        return tokenFlow().first() != null
     }
 }
