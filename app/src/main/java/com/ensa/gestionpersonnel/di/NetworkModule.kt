@@ -3,8 +3,10 @@ package com.ensa.gestionpersonnel.di
 import android.content.Context
 import com.ensa.gestionpersonnel.data.local.PreferencesManager
 import com.ensa.gestionpersonnel.data.remote.AuthInterceptor
+import com.ensa.gestionpersonnel.data.remote.api.AbsenceApi
 import com.ensa.gestionpersonnel.data.remote.api.AuthApi
 import com.ensa.gestionpersonnel.data.remote.api.DashboardApi
+import com.ensa.gestionpersonnel.data.remote.api.MissionApi  // ← AJOUTEZ CET IMPORT
 import com.ensa.gestionpersonnel.data.remote.api.PersonnelApi
 import com.ensa.gestionpersonnel.utils.Constants
 import dagger.Module
@@ -73,5 +75,18 @@ object NetworkModule {
     @Singleton
     fun provideDashboardApi(retrofit: Retrofit): DashboardApi {
         return retrofit.create(DashboardApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAbsenceApi(retrofit: Retrofit): AbsenceApi {
+        return retrofit.create(AbsenceApi::class.java)
+    }
+
+    // ← AJOUTEZ CETTE MÉTHODE
+    @Provides
+    @Singleton
+    fun provideMissionApi(retrofit: Retrofit): MissionApi {
+        return retrofit.create(MissionApi::class.java)
     }
 }

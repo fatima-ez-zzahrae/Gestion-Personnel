@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.ensa.gestionpersonnel.R
@@ -25,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    
+
     @Inject
     lateinit var preferencesManager: PreferencesManager
 
@@ -34,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Vérifier si l'utilisateur est connecté
         lifecycleScope.launch {
             if (!preferencesManager.isLoggedIn()) {
                 navigateToLogin()
@@ -56,23 +57,46 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Lier BottomNavigationView avec NavController
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.dashboardFragment,
+                R.id.personnelListFragment,
+                R.id.absenceMenuFragment,
+                R.id.missionListFragment,
+                R.id.diplomeAvancementMenuFragment  // ← AJOUTÉ
+            )
+        )
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationView.setupWithNavController(navController)
 
-        // Gérer les changements de destination
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            // Cacher/Afficher la bottom navigation selon la destination
             when (destination.id) {
+                // Fragments sans bottom nav
                 R.id.personnelFormFragment,
-                R.id.personnelDetailFragment -> {
+                R.id.personnelDetailFragment,
+                R.id.profileRHFragment,
+                R.id.absenceFormFragment,
+                R.id.absenceDetailFragment,
+                R.id.absenceListFragment,
+                R.id.missionFormFragment,
+                R.id.missionDetailFragment,
+                    // ← AJOUTÉ : Diplômes & Avancements
+                R.id.diplomeListFragment,
+                R.id.diplomeFormFragment,
+                R.id.diplomeDetailFragment,
+                R.id.avancementListFragment,
+                R.id.avancementFormFragment,
+                R.id.avancementDetailFragment -> {
                     binding.bottomNavigationView.visibility = View.GONE
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 }
                 else -> {
                     binding.bottomNavigationView.visibility = View.VISIBLE
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 }
             }
-            
-            // Mettre à jour le titre de la toolbar
+
             supportActionBar?.title = destination.label
         }
     }
@@ -85,7 +109,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_profile -> {
-                Toast.makeText(this, "Profil - À implémenter", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.profileRHFragment)
                 true
             }
             R.id.action_notifications -> {

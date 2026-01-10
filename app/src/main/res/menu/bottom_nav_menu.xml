@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/dashboardFragment"
         android:icon="@drawable/ic_dashboard"
-        android:title="Tableau de Bord"/>
-    
+        android:title="Tableau de Bord"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/personnelListFragment"
         android:icon="@drawable/ic_people"
-        android:title="Personnel"/>
-    
-    <!-- Placeholders pour les modules de votre collègue -->
+        android:title="Personnel"
+        app:showAsAction="ifRoom" />
+
     <item
-        android:id="@+id/absencesFragment"
-        android:icon="@drawable/ic_calendar_absent"
-        android:title="Absences"
-        android:enabled="false"/>
-    
-    <item
-        android:id="@+id/missionsFragment"
+        android:id="@+id/missionListFragment"
         android:icon="@drawable/ic_flight"
         android:title="Missions"
-        android:enabled="false"/>
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/absenceMenuFragment"
+        android:icon="@drawable/ic_calendar_absent"
+        android:title="Absences"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+
+    <!-- NOUVEAU : Menu Diplômes & Avancements -->
+    <item
+        android:id="@+id/diplomeAvancementMenuFragment"
+        android:icon="@drawable/ic_school"
+        android:title="Carrière"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
 
 </menu>

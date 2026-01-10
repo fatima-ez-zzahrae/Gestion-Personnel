@@ -11,13 +11,13 @@
     <string name="login_username_hint">Nom d\'utilisateur</string>
     <string name="login_password_hint">Mot de passe</string>
     <string name="login_button">Se connecter</string>
-    
+    <string name="filter_by_type">Filtrer par type</string>
     <!-- Navigation -->
     <string name="nav_dashboard">Tableau de Bord</string>
     <string name="nav_personnel">Personnel</string>
     <string name="nav_absences">Absences</string>
     <string name="nav_missions">Missions</string>
-    
+
     <!-- Actions -->
     <string name="action_add">Ajouter</string>
     <string name="action_edit">Modifier</string>
@@ -26,17 +26,94 @@
     <string name="action_cancel">Annuler</string>
     <string name="action_search">Rechercher</string>
     <string name="action_refresh">Actualiser</string>
-    
+
     <!-- Messages -->
     <string name="success_saved">Enregistré avec succès</string>
     <string name="success_updated">Modifié avec succès</string>
     <string name="success_deleted">Supprimé avec succès</string>
     <string name="error_network">Erreur réseau</string>
     <string name="error_required_fields">Veuillez remplir tous les champs obligatoires</string>
-    
+
     <!-- Confirmations -->
     <string name="confirm_delete_title">Confirmer la suppression</string>
     <string name="confirm_delete_message">Êtes-vous sûr de vouloir supprimer cet élément ?</string>
     <string name="confirm_logout_title">Déconnexion</string>
     <string name="confirm_logout_message">Voulez-vous vraiment vous déconnecter ?</string>
+    <!-- Absence Management - Types -->
+    <string name="absence_type_conge">Congé annuel</string>
+    <string name="absence_type_maladie">Absence maladie</string>
+    <string name="absence_type_exceptionnelle">Absence exceptionnelle</string>
+    <string name="absence_type_non_justifiee">Absence non justifiée</string>
+
+    <!-- Absence Management - Status -->
+    <string name="absence_status_validated">Validée</string>
+    <string name="absence_status_pending">En attente</string>
+
+    <!-- Absence Management - Actions -->
+    <string name="action_validate">Valider</string>
+    <string name="action_invalidate">Invalider</string>
+
+    <!-- Absence Management - Messages -->
+    <string name="msg_absence_created">Absence créée avec succès</string>
+    <string name="msg_absence_updated">Absence mise à jour avec succès</string>
+    <string name="msg_absence_deleted">Absence supprimée avec succès</string>
+    <string name="msg_absence_validated">Absence validée</string>
+    <string name="msg_absence_invalidated">Absence invalidée</string>
+
+    <!-- Absence Management - Errors -->
+    <string name="error_no_network">Pas de connexion internet</string>
+    <string name="error_unknown">Erreur inconnue</string>
+    <string name="error_loading_data">Erreur lors du chargement des données</string>
+
+    <!-- Absence Management - Empty states -->
+    <string name="empty_absences">Aucune absence trouvée</string>
+    <string name="empty_personnel">Aucun personnel trouvé</string>
+
+    <!-- Absence Management - Form labels -->
+    <string name="label_absence_type">Type d\'absence</string>
+    <string name="label_start_date">Date de début</string>
+    <string name="label_end_date">Date de fin</string>
+    <string name="label_reason">Motif</string>
+    <string name="label_attachment">Justificatif</string>
+    <string name="label_duration">Durée</string>
+
+    <!-- Absence Management - Validation messages -->
+    <string name="error_select_type">Veuillez sélectionner un type d\'absence</string>
+    <string name="error_select_start_date">Veuillez sélectionner une date de début</string>
+    <string name="error_select_end_date">Veuillez sélectionner une date de fin</string>
+    <string name="error_invalid_date_range">La date de fin doit être après la date de début</string>
+    <string name="error_reason_required">Le motif est obligatoire pour ce type d\'absence</string>
+
+    <!-- Absence Management - Dialogs -->
+    <string name="dialog_confirm_delete_absence_title">Supprimer l\'absence</string>
+    <string name="dialog_confirm_delete_absence_message">Voulez-vous vraiment supprimer cette absence ?</string>
+    <string name="dialog_confirm_validate_title">Valider l\'absence</string>
+    <string name="dialog_confirm_validate_message">Voulez-vous valider cette absence ?</string>
+    <string name="dialog_confirm_invalidate_title">Invalider l\'absence</string>
+    <string name="dialog_confirm_invalidate_message">Voulez-vous invalider cette absence ?</string>
+
+    <!-- Absence Management - Info messages -->
+    <string name="info_absence_validation">Les absences doivent être validées par un administrateur</string>
+    <string name="info_attachment_recommended">Un justificatif est recommandé pour les absences maladie</string>
+    <string name="info_deducted_from_balance">Les congés annuels sont déduits du solde disponible</string>
+
+    <!-- Absence Management - Titles -->
+    <string name="title_manage_conges">Gestion des Congés</string>
+    <string name="title_manage_maladie">Gestion des Absences Maladie</string>
+    <string name="title_manage_exceptionnelle">Absences Exceptionnelles</string>
+    <string name="title_manage_non_justifiee">Absences Non Justifiées</string>
+    <string name="title_all_absences">Toutes les Absences</string>
+    <string name="title_new_absence">Nouvelle Absence</string>
+    <string name="title_edit_absence">Modifier l\'absence</string>
+
+    <!-- Absence Management - Other -->
+    <string name="filter_applied">Filtré par: %s</string>
+    <string name="clear_filter">Effacer le filtre</string>
+    <string name="total_absences">Total</string>
+    <string name="pending_absences">En attente</string>
+    <string name="days_count">%d jour(s)</string>
+    <string name="ppr_label">PPR: %s</string>
+    <string name="upload_attachment">Ajouter un justificatif</string>
+    <string name="attachment_present">Justificatif présent</string>
+    <string name="no_reason">Aucun motif</string>
 </resources>

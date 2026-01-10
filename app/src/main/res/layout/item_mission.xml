@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardMission"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Icône de statut -->
+        <ImageView
+            android:id="@+id/ivStatutIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_background"
+            android:padding="8dp"
+            android:src="@drawable/ic_flight"
+            android:tint="@color/purple_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Destination -->
+        <TextView
+            android:id="@+id/tvDestination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tvStatut"
+            app:layout_constraintStart_toEndOf="@id/ivStatutIcon"
+            app:layout_constraintTop_toTopOf="@id/ivStatutIcon"
+            tools:text="Paris, France" />
+
+        <!-- Objet de la mission -->
+        <TextView
+            android:id="@+id/tvObjetMission"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/gray_600"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivStatutIcon"
+            app:layout_constraintTop_toBottomOf="@id/tvDestination"
+            tools:text="Formation technique sur les nouvelles technologies" />
+
+        <!-- Badge Statut -->
+        <TextView
+            android:id="@+id/tvStatut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_status_pending"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="EN COURS" />
+
+        <!-- Divider -->
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray_200"
+            app:layout_constraintTop_toBottomOf="@id/tvObjetMission" />
+
+        <!-- Personnel Icon -->
+        <ImageView
+            android:id="@+id/ivPersonnelIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_person"
+            android:tint="@color/gray_600"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <!-- Personnel -->
+        <TextView
+            android:id="@+id/tvPersonnel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/gray_700"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivPersonnelIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivPersonnelIcon"
+            app:layout_constraintTop_toTopOf="@id/ivPersonnelIcon"
+            tools:text="Ahmed El Mansouri" />
+
+        <!-- Calendar Icon Départ -->
+        <ImageView
+            android:id="@+id/ivCalendarDepart"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_calendar"
+            android:tint="@color/gray_600"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPersonnel" />
+
+        <!-- Date Départ Label -->
+        <TextView
+            android:id="@+id/tvDateDepartLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Départ:"
+            android:textColor="@color/gray_600"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivCalendarDepart"
+            app:layout_constraintStart_toEndOf="@id/ivCalendarDepart"
+            app:layout_constraintTop_toTopOf="@id/ivCalendarDepart" />
+
+        <!-- Date Départ -->
+        <TextView
+            android:id="@+id/tvDateDepart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvDateDepartLabel"
+            app:layout_constraintStart_toEndOf="@id/tvDateDepartLabel"
+            app:layout_constraintTop_toTopOf="@id/tvDateDepartLabel"
+            tools:text="15 Jan 2026" />
+
+        <!-- Arrow -->
+        <TextView
+            android:id="@+id/tvArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="→"
+            android:textColor="@color/gray_600"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvDateDepart"
+            app:layout_constraintStart_toEndOf="@id/tvDateDepart"
+            app:layout_constraintTop_toTopOf="@id/tvDateDepart" />
+
+        <!-- Date Retour Label -->
+        <TextView
+            android:id="@+id/tvDateRetourLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Retour:"
+            android:textColor="@color/gray_600"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvArrow"
+            app:layout_constraintStart_toEndOf="@id/tvArrow"
+            app:layout_constraintTop_toTopOf="@id/tvArrow" />
+
+        <!-- Date Retour -->
+        <TextView
+            android:id="@+id/tvDateRetour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvDateRetourLabel"
+            app:layout_constraintStart_toEndOf="@id/tvDateRetourLabel"
+            app:layout_constraintTop_toTopOf="@id/tvDateRetourLabel"
+            tools:text="20 Jan 2026" />
+
+        <!-- Durée Badge -->
+        <TextView
+            android:id="@+id/tvDuree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/circle_background"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/purple_700"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPersonnel"
+            tools:text="5 jours" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

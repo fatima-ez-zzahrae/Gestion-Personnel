@@ -52,11 +52,30 @@ class PersonnelListViewModel @Inject constructor(
         viewModelScope.launch {
             val result = personnelRepository.deletePersonnel(id)
             _deleteState.value = result
-            
+
             if (result is NetworkResult.Success) {
                 loadPersonnelList() // Recharger la liste
             }
         }
     }
-}
 
+    fun loadPersonnelById(personnelId: Long) {
+        _personnelListState.value = NetworkResult.Loading()
+        viewModelScope.launch {
+            val result = personnelRepository.getPersonnelById(personnelId)
+            when (result) {
+                is NetworkResult.Success -> {
+                    result.data?.let { personnel ->
+                        _personnelListState.value = NetworkResult.Success(listOf(personnel))
+                    }
+                }
+                is NetworkResult.Error -> {
+                    _personnelListState.value = NetworkResult.Error(result.message ?: "Erreur")
+                }
+                is NetworkResult.Loading -> {
+                    _personnelListState.value = NetworkResult.Loading()
+                }
+            }
+        }
+    }
+}

@@ -23,10 +23,10 @@ object PersonnelLocalStorage {
         val lowerQuery = query.lowercase()
         return personnelList.filter {
             it.nomFr.lowercase().contains(lowerQuery) ||
-            it.prenomFr.lowercase().contains(lowerQuery) ||
-            it.ppr.contains(query) ||
-            it.cin.lowercase().contains(lowerQuery) ||
-            it.email.lowercase().contains(lowerQuery)
+                    it.prenomFr.lowercase().contains(lowerQuery) ||
+                    it.ppr.contains(query) ||
+                    it.cin.lowercase().contains(lowerQuery) ||
+                    it.email.lowercase().contains(lowerQuery)
         }
     }
 
@@ -91,6 +91,15 @@ object PersonnelLocalStorage {
         return updatedPersonnel
     }
 
+    // ✅ NOUVELLE MÉTHODE : Mettre à jour un personnel directement (pour déduction de congés)
+    fun updatePersonnelDirect(personnel: Personnel): Personnel {
+        val index = personnelList.indexOfFirst { it.id == personnel.id }
+        if (index != -1) {
+            personnelList[index] = personnel
+        }
+        return personnel
+    }
+
     fun deletePersonnel(id: Long): Boolean {
         return personnelList.removeIf { it.id == id }
     }
@@ -99,21 +108,21 @@ object PersonnelLocalStorage {
         val total = personnelList.size
         val actifs = personnelList.count { it.estActif }
         val inactifs = total - actifs
-        
+
         val repartitionParType = personnelList.groupBy { it.typeEmploye }
             .mapValues { it.value.size }
-        
+
         val repartitionParGrade = personnelList.groupBy { it.gradeActuel }
             .mapValues { it.value.size }
-        
+
         val moyenneAnciennete = if (personnelList.isNotEmpty()) {
             personnelList.map { it.getAnciennete() }.average().toInt()
         } else {
             0
         }
-        
+
         val totalConges = personnelList.sumOf { it.soldeConges }
-        
+
         return mapOf(
             "totalPersonnel" to total,
             "personnelActif" to actifs,
@@ -125,4 +134,3 @@ object PersonnelLocalStorage {
         )
     }
 }
-

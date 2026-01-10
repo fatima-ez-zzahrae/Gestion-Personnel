@@ -11,10 +11,26 @@
         android:name="com.ensa.gestionpersonnel.ui.dashboard.DashboardFragment"
         android:label="Tableau de Bord"
         tools:layout="@layout/fragment_dashboard">
-        
+
         <action
             android:id="@+id/action_dashboard_to_personnelList"
             app:destination="@id/personnelListFragment"/>
+
+        <action
+            android:id="@+id/action_dashboard_to_profile"
+            app:destination="@id/profileRHFragment"/>
+
+        <action
+            android:id="@+id/action_dashboard_to_absenceMenu"
+            app:destination="@id/absenceMenuFragment"/>
+
+        <action
+            android:id="@+id/action_dashboard_to_missionList"
+            app:destination="@id/missionListFragment"/>
+
+        <action
+            android:id="@+id/action_dashboard_to_diplomeAvancementMenu"
+            app:destination="@id/diplomeAvancementMenuFragment"/>
     </fragment>
 
     <!-- Personnel List Fragment -->
@@ -23,14 +39,20 @@
         android:name="com.ensa.gestionpersonnel.ui.personnel.list.PersonnelListFragment"
         android:label="Liste du Personnel"
         tools:layout="@layout/fragment_personnel_list">
-        
+
         <action
             android:id="@+id/action_personnelList_to_personnelDetail"
             app:destination="@id/personnelDetailFragment"/>
-        
+
         <action
             android:id="@+id/action_personnelList_to_personnelForm"
             app:destination="@id/personnelFormFragment"/>
+
+        <action
+            android:id="@+id/action_personnelList_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <!-- Personnel Detail Fragment -->
@@ -39,14 +61,32 @@
         android:name="com.ensa.gestionpersonnel.ui.personnel.detail.PersonnelDetailFragment"
         android:label="Détails du Personnel"
         tools:layout="@layout/fragment_personnel_detail">
-        
+
         <argument
             android:name="personnelId"
             app:argType="long"/>
-        
+
         <action
             android:id="@+id/action_personnelDetailToPersonnelForm"
             app:destination="@id/personnelFormFragment"/>
+
+        <action
+            android:id="@+id/action_personnelDetail_to_personnelList"
+            app:destination="@id/personnelListFragment"
+            app:popUpTo="@id/personnelListFragment"/>
+
+        <action
+            android:id="@+id/action_personnelDetail_to_absenceMenu"
+            app:destination="@id/absenceMenuFragment"/>
+
+        <!-- NOUVEAUX LIENS depuis Personnel Detail -->
+        <action
+            android:id="@+id/action_personnelDetail_to_diplomeForm"
+            app:destination="@id/diplomeFormFragment"/>
+
+        <action
+            android:id="@+id/action_personnelDetail_to_avancementForm"
+            app:destination="@id/avancementFormFragment"/>
     </fragment>
 
     <!-- Personnel Form Fragment -->
@@ -55,10 +95,438 @@
         android:name="com.ensa.gestionpersonnel.ui.personnel.form.PersonnelFormFragment"
         android:label="Formulaire Personnel"
         tools:layout="@layout/fragment_personnel_form">
-        
+
         <argument
             android:name="personnelId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <action
+            android:id="@+id/action_personnelForm_to_personnelDetail"
+            app:destination="@id/personnelDetailFragment"/>
+
+        <action
+            android:id="@+id/action_personnelForm_to_personnelList"
+            app:destination="@id/personnelListFragment"
+            app:popUpTo="@id/personnelListFragment"/>
+    </fragment>
+
+    <!-- Profil Responsable RH -->
+    <fragment
+        android:id="@+id/profileRHFragment"
+        android:name="com.ensa.gestionpersonnel.ui.profile.ProfileRHFragment"
+        android:label="Mon Profil"
+        tools:layout="@layout/fragment_profile_rh">
+
+        <action
+            android:id="@+id/action_profile_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"/>
+    </fragment>
+
+    <!-- ============================================ -->
+    <!-- SECTION MISSIONS -->
+    <!-- ============================================ -->
+
+    <!-- Mission List Fragment -->
+    <fragment
+        android:id="@+id/missionListFragment"
+        android:name="com.ensa.gestionpersonnel.ui.mission.list.MissionListFragment"
+        android:label="Liste des Missions"
+        tools:layout="@layout/fragment_mission_list">
+
+        <action
+            android:id="@+id/action_missionListFragment_to_missionDetailFragment"
+            app:destination="@id/missionDetailFragment"/>
+
+        <action
+            android:id="@+id/action_missionListFragment_to_missionFormFragment"
+            app:destination="@id/missionFormFragment"/>
+
+        <action
+            android:id="@+id/action_missionList_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
+
+    <!-- Mission Detail Fragment -->
+    <fragment
+        android:id="@+id/missionDetailFragment"
+        android:name="com.ensa.gestionpersonnel.ui.mission.detail.MissionDetailFragment"
+        android:label="Détails Mission"
+        tools:layout="@layout/fragment_mission_detail">
+
+        <argument
+            android:name="missionId"
+            app:argType="long"
+            android:defaultValue="-1L"/>
+
+        <action
+            android:id="@+id/action_missionDetailFragment_to_missionFormFragment"
+            app:destination="@id/missionFormFragment"/>
+
+        <action
+            android:id="@+id/action_missionDetail_to_missionList"
+            app:destination="@id/missionListFragment"
+            app:popUpTo="@id/missionListFragment"/>
+    </fragment>
+
+    <!-- Mission Form Fragment -->
+    <fragment
+        android:id="@+id/missionFormFragment"
+        android:name="com.ensa.gestionpersonnel.ui.mission.form.MissionFormFragment"
+        android:label="Formulaire Mission"
+        tools:layout="@layout/fragment_mission_form">
+
+        <argument
+            android:name="missionId"
+            app:argType="long"
+            android:defaultValue="-1L"/>
+
+        <action
+            android:id="@+id/action_missionForm_to_missionDetail"
+            app:destination="@id/missionDetailFragment"/>
+
+        <action
+            android:id="@+id/action_missionForm_to_missionList"
+            app:destination="@id/missionListFragment"
+            app:popUpTo="@id/missionListFragment"/>
+    </fragment>
+
+    <!-- ============================================ -->
+    <!-- SECTION ABSENCES -->
+    <!-- ============================================ -->
+
+    <!-- Absence Menu Fragment -->
+    <fragment
+        android:id="@+id/absenceMenuFragment"
+        android:name="com.ensa.gestionpersonnel.ui.absence.menu.AbsenceMenuFragment"
+        android:label="Gestion des Absences"
+        tools:layout="@layout/fragment_absence_menu">
+
+        <action
+            android:id="@+id/action_absenceMenu_to_congeList"
+            app:destination="@id/absenceListFragment">
+            <argument
+                android:name="absenceType"
+                app:argType="string"
+                android:defaultValue="CONGE_ANNUEL"/>
+        </action>
+
+        <action
+            android:id="@+id/action_absenceMenu_to_absenceExceptionnelleList"
+            app:destination="@id/absenceListFragment">
+            <argument
+                android:name="absenceType"
+                app:argType="string"
+                android:defaultValue="EXCEPTIONNELLE"/>
+        </action>
+
+        <action
+            android:id="@+id/action_absenceMenu_to_absenceNonJustifieeList"
+            app:destination="@id/absenceListFragment">
+            <argument
+                android:name="absenceType"
+                app:argType="string"
+                android:defaultValue="NON_JUSTIFIEE"/>
+        </action>
+
+        <action
+            android:id="@+id/action_absenceMenu_to_absenceMaladieList"
+            app:destination="@id/absenceListFragment">
+            <argument
+                android:name="absenceType"
+                app:argType="string"
+                android:defaultValue="MALADIE"/>
+        </action>
+
+        <action
+            android:id="@+id/action_absenceMenu_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"/>
+    </fragment>
+
+    <!-- Absence List Fragment -->
+    <fragment
+        android:id="@+id/absenceListFragment"
+        android:name="com.ensa.gestionpersonnel.ui.absence.list.AbsenceListFragment"
+        android:label="Liste des Absences"
+        tools:layout="@layout/fragment_absence_list">
+
+        <argument
+            android:name="personnelId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <argument
+            android:name="absenceType"
+            app:argType="string"
+            android:defaultValue=""/>
+
+        <action
+            android:id="@+id/action_absenceList_to_absenceForm"
+            app:destination="@id/absenceFormFragment">
+            <argument
+                android:name="personnelId"
+                app:argType="long"
+                android:defaultValue="0L"/>
+            <argument
+                android:name="absenceType"
+                app:argType="string"
+                android:defaultValue=""/>
+        </action>
+
+        <action
+            android:id="@+id/action_absenceList_to_absenceDetail"
+            app:destination="@id/absenceDetailFragment"/>
+
+        <action
+            android:id="@+id/action_absenceList_to_absenceMenu"
+            app:destination="@id/absenceMenuFragment"
+            app:popUpTo="@id/absenceMenuFragment"/>
+
+        <action
+            android:id="@+id/action_absenceList_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"/>
+
+        <action
+            android:id="@+id/action_absenceList_to_personnelList"
+            app:destination="@id/personnelListFragment"
+            app:popUpTo="@id/personnelListFragment"/>
+    </fragment>
+
+    <!-- Absence Form Fragment -->
+    <fragment
+        android:id="@+id/absenceFormFragment"
+        android:name="com.ensa.gestionpersonnel.ui.absence.form.AbsenceFormFragment"
+        android:label="Nouvelle Absence"
+        tools:layout="@layout/fragment_absence_form">
+
+        <argument
+            android:name="absenceId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <argument
+            android:name="personnelId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <argument
+            android:name="absenceType"
+            app:argType="string"
+            android:defaultValue=""/>
+
+        <action
+            android:id="@+id/action_absenceForm_to_absenceList"
+            app:destination="@id/absenceListFragment"
+            app:popUpTo="@id/absenceListFragment"/>
+    </fragment>
+
+    <!-- Absence Detail Fragment -->
+    <fragment
+        android:id="@+id/absenceDetailFragment"
+        android:name="com.ensa.gestionpersonnel.ui.absence.detail.AbsenceDetailFragment"
+        android:label="Détails Absence"
+        tools:layout="@layout/fragment_absence_detail">
+
+        <argument
+            android:name="absenceId"
             app:argType="long"/>
+
+        <action
+            android:id="@+id/action_absenceDetail_to_absenceList"
+            app:destination="@id/absenceListFragment"
+            app:popUpTo="@id/absenceListFragment"/>
+
+        <action
+            android:id="@+id/action_absenceDetail_to_absenceForm"
+            app:destination="@id/absenceFormFragment"/>
+    </fragment>
+
+    <!-- ============================================ -->
+    <!-- SECTION DIPLÔMES & AVANCEMENTS -->
+    <!-- ============================================ -->
+
+    <!-- Menu Diplômes & Avancements -->
+    <fragment
+        android:id="@+id/diplomeAvancementMenuFragment"
+        android:name="com.ensa.gestionpersonnel.ui.diplome_avancement.DiplomeAvancementMenuFragment"
+        android:label="Gestion Carrière"
+        tools:layout="@layout/fragment_diplome_avancement_menu">
+
+        <action
+            android:id="@+id/action_diplomeAvancementMenuFragment_to_diplomeListFragment"
+            app:destination="@id/diplomeListFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeAvancementMenuFragment_to_avancementListFragment"
+            app:destination="@id/avancementListFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeAvancementMenu_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"/>
+    </fragment>
+
+    <!-- ============================================ -->
+    <!-- DIPLÔMES -->
+    <!-- ============================================ -->
+
+    <!-- Diplome List Fragment -->
+    <fragment
+        android:id="@+id/diplomeListFragment"
+        android:name="com.ensa.gestionpersonnel.ui.diplome.list.DiplomeListFragment"
+        android:label="Liste des Diplômes"
+        tools:layout="@layout/fragment_diplome_list">
+
+        <action
+            android:id="@+id/action_diplomeListFragment_to_diplomeFormFragment"
+            app:destination="@id/diplomeFormFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeListFragment_to_diplomeDetailFragment"
+            app:destination="@id/diplomeDetailFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeList_to_diplomeAvancementMenu"
+            app:destination="@id/diplomeAvancementMenuFragment"
+            app:popUpTo="@id/diplomeAvancementMenuFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeList_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"/>
+    </fragment>
+
+    <!-- Diplome Form Fragment -->
+    <fragment
+        android:id="@+id/diplomeFormFragment"
+        android:name="com.ensa.gestionpersonnel.ui.diplome.form.DiplomeFormFragment"
+        android:label="Formulaire Diplôme"
+        tools:layout="@layout/fragment_diplome_form">
+
+        <argument
+            android:name="diplomeId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <!-- ✅ AJOUT DE personnelId -->
+        <argument
+            android:name="personnelId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <action
+            android:id="@+id/action_diplomeForm_to_diplomeList"
+            app:destination="@id/diplomeListFragment"
+            app:popUpTo="@id/diplomeListFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeForm_to_diplomeDetail"
+            app:destination="@id/diplomeDetailFragment"/>
+    </fragment>
+
+    <!-- Diplome Detail Fragment -->
+    <fragment
+        android:id="@+id/diplomeDetailFragment"
+        android:name="com.ensa.gestionpersonnel.ui.diplome.detail.DiplomeDetailFragment"
+        android:label="Détails Diplôme"
+        tools:layout="@layout/fragment_diplome_detail">
+
+        <argument
+            android:name="diplomeId"
+            app:argType="long"/>
+
+        <action
+            android:id="@+id/action_diplomeDetail_to_diplomeForm"
+            app:destination="@id/diplomeFormFragment"/>
+
+        <action
+            android:id="@+id/action_diplomeDetail_to_diplomeList"
+            app:destination="@id/diplomeListFragment"
+            app:popUpTo="@id/diplomeListFragment"/>
+    </fragment>
+
+    <!-- ============================================ -->
+    <!-- AVANCEMENTS -->
+    <!-- ============================================ -->
+
+    <!-- Avancement List Fragment -->
+    <fragment
+        android:id="@+id/avancementListFragment"
+        android:name="com.ensa.gestionpersonnel.ui.avancement.list.AvancementListFragment"
+        android:label="Liste des Avancements"
+        tools:layout="@layout/fragment_avancement_list">
+
+        <action
+            android:id="@+id/action_avancementListFragment_to_avancementFormFragment"
+            app:destination="@id/avancementFormFragment"/>
+
+        <action
+            android:id="@+id/action_avancementListFragment_to_avancementDetailFragment"
+            app:destination="@id/avancementDetailFragment"/>
+
+        <action
+            android:id="@+id/action_avancementList_to_diplomeAvancementMenu"
+            app:destination="@id/diplomeAvancementMenuFragment"
+            app:popUpTo="@id/diplomeAvancementMenuFragment"/>
+
+        <action
+            android:id="@+id/action_avancementList_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"/>
+    </fragment>
+
+    <!-- Avancement Form Fragment -->
+    <fragment
+        android:id="@+id/avancementFormFragment"
+        android:name="com.ensa.gestionpersonnel.ui.avancement.form.AvancementFormFragment"
+        android:label="Formulaire Avancement"
+        tools:layout="@layout/fragment_avancement_form">
+
+        <argument
+            android:name="avancementId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <!-- ✅ AJOUT DE personnelId -->
+        <argument
+            android:name="personnelId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+
+        <action
+            android:id="@+id/action_avancementForm_to_avancementList"
+            app:destination="@id/avancementListFragment"
+            app:popUpTo="@id/avancementListFragment"/>
+
+        <action
+            android:id="@+id/action_avancementForm_to_avancementDetail"
+            app:destination="@id/avancementDetailFragment"/>
+    </fragment>
+
+    <!-- Avancement Detail Fragment -->
+    <fragment
+        android:id="@+id/avancementDetailFragment"
+        android:name="com.ensa.gestionpersonnel.ui.avancement.detail.AvancementDetailFragment"
+        android:label="Détails Avancement"
+        tools:layout="@layout/fragment_avancement_detail">
+
+        <argument
+            android:name="avancementId"
+            app:argType="long"/>
+
+        <action
+            android:id="@+id/action_avancementDetail_to_avancementForm"
+            app:destination="@id/avancementFormFragment"/>
+
+        <action
+            android:id="@+id/action_avancementDetail_to_avancementList"
+            app:destination="@id/avancementListFragment"
+            app:popUpTo="@id/avancementListFragment"/>
     </fragment>
 
 </navigation>
